@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Analysis and Design</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="media.css">
+    <link rel="stylesheet" href="aesthetics.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#808080"
+                    d="M448 80l0 48c0 44.2-100.3 80-224 80S0 172.2 0 128L0 80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6L448 288c0 44.2-100.3 80-224 80S0 332.2 0 288L0 186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6l0 85.9c0 44.2-100.3 80-224 80S0 476.2 0 432l0-85.9z" />
+            </svg>
+        </div>
+        <div class="links">
+            <a href="#intro" class="txt" onclick="addRemoveActive(this)">Introduction</a>
+            <a href="#terms" class="txt" onclick="addRemoveActive(this)">Terminologies</a>
+            <a href="#design" class="txt" onclick="addRemoveActive(this)">Design</a>
+            <a href="#types" class="txt" onclick="addRemoveActive(this)">Types</a>
+            <a href="#process" class="txt" onclick="addRemoveActive(this)">Process</a>
+            <a href="#actual_demo" class="txt" onclick="addRemoveActive(this)">Demo</a>
+        </div>
+
+        <a href="../index.html">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#808080"
+                    d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+            </svg>
+        </a>
+
+        <div class="hamburger" onclick="toggleMenu(this)">
+            <span class="s1"></span>
+            <span class="s2"></span>
+            <span class="s3"></span>
+        </div>
+
+    </nav>
+
+    <main>
+
+
+        <section id="intro" class="intro">
+
+            <!-- <div class="rectangles">
+                <div class="rectangle"></div>
+                <div class="rectangle"></div>
+                <div class="rectangle"></div>
+                <div class="rectangle"></div>
+                <div class="rectangle"></div>
+            </div> -->
+
+            <div class="text_holder">
+                <div class="main_text">
+                    <h1>Introduction</h1>
+                </div>
+
+                <div class="first">
+                    <p><strong>What is Database?</strong></p>
+                    <p>It is an organized collection of structured information or data, typically stored electronically
+                        in a
+                        computer system.
+                        Databases are managed by a Database Management System (DBMS), which allows for efficient data
+                        storage, retrieval, and
+                        manipulation.
+                        <a href="https://builtin.com/data-science/database">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <path fill="#b5ff15"
+                                    d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l82.7 0L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3l0 82.7c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160c0-17.7-14.3-32-32-32L320 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z" />
+                            </svg>
+                        </a>
+                    </p>
+                </div>
+
+                <div class="second">
+                    <p><strong>DB Design Basics</strong></p>
+                    <p>A properly designed database provides you with access to up-to-date, accurate information.
+                        Because a
+                        correct design is
+                        essential to achieving your goals in working with a database, investing the time required to
+                        learn
+                        the principles of
+                        good design makes sense. In the end, you are much more likely to end up with a database that
+                        meets
+                        your needs and can
+                        easily accommodate change.
+                        <a href="https://builtin.com/data-science/database">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <path fill="#b5ff15"
+                                    d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l82.7 0L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3l0 82.7c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160c0-17.7-14.3-32-32-32L320 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z" />
+                            </svg>
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="terms" class="terms">
+            <div class="main_text">
+                <h1>Terminologies</h1>
+            </div>
+
+            <div class="content">
+                <table>
+                    <tr>
+                        <th><b>Term</b></th>
+                        <th><b>Definition</b></th>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="text-align: center; text-decoration: none; font-style:italic;">Database
+                            Terms</td>
+                    </tr>
+
+                    <tr>
+                        <td>Database Management System (DBMS)</td>
+                        <td>Software that manages databases, allowing for data storage, retrieval, and manipulation.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Relational Database</td>
+                        <td>A type of database that organizes data into tables (relations) with rows and columns.</td>
+                    </tr>
+
+                    <tr>
+                        <td>NoSQL Database</td>
+                        <td>
+                            A non-relational database designed for large-scale data storage and for massively-parallel,
+                            high-performance data
+                            processing across a distributed system.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="text-align: center; text-decoration: none; font-style:italic;">Key
+                            Concepts in Database Design</td>
+                    </tr>
+
+                    <tr>
+                        <td>Schema</td>
+                        <td>The structure of a database, defined by tables, fields, relationships, views, indexes, and
+                            other elements.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Normalization</td>
+                        <td>
+                            The process of organizing data to minimize redundancy and improve data integrity.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Primary Key</td>
+                        <td>
+                            A unique identifier for a record in a table.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Foreign Key</td>
+                        <td>
+                            A field in one table that uniquely identifies a row of another table, creating a
+                            relationship between the two tables.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Index</td>
+                        <td>
+                            A database object that improves the speed of data retrieval operations on a table at the
+                            cost of additional storage and
+                            slower write operations.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>ACID Properties</td>
+                        <td>
+                            Set of properties that ensure reliable processing of database transactions (Atomicity,
+                            Consistency, Isolation,
+                            Durability).
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="text-align: center; text-decoration: none; font-style:italic;">
+                            Common Database Operations</td>
+                    </tr>
+
+                    <tr>
+                        <td>CRUD Operations</td>
+                        <td>
+                            The four basic operations for managing data - Create, Read, Update, Delete.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>SQL (Structured Query Language)</td>
+                        <td>
+                            A standard language for querying and manipulating relational databases.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Join</td>
+                        <td>
+                            An SQL operation used to combine rows from two or more tables based on a related column
+                            between them.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="text-align: center; text-decoration: none; font-style:italic;">
+                            Advanced Concepts</td>
+                    </tr>
+
+                    <tr>
+                        <td>ERD (Entity-Relationship Diagram)</td>
+                        <td>
+                            A visual representation of the entities in a database and their relationships.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Data Warehouse</td>
+                        <td>
+                            A centralized repository for storing large volumes of data from multiple sources, optimized
+                            for analysis and reporting.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Big Data</td>
+                        <td>
+                            Extremely large datasets that require specialized tools and techniques to store, process,
+                            and analyze.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="design" class="design">
+            <div class="main_text">
+                <h1>Design</h1>
+            </div>
+
+            <div class="design_content">
+                <div class="question">
+                    <h1>What is good database design?</h1>
+                    <p>
+                        Certain principles guide the database design process. The first principle is that duplicate
+                        information (also called
+                        redundant data) is bad, because it wastes space and increases the likelihood of errors and
+                        inconsistencies. The second
+                        principle is that the correctness and completeness of information is important. If your database
+                        contains incorrect
+                        information, any reports that pull information from the database will also contain incorrect
+                        information. As a result,
+                        any decisions you make that are based on those reports will then be misinformed.
+                    </p>
+                </div>
+
+                <div class="roadmap">
+                    <ul>
+                        <li id="res">Research and Discover</li>
+                        <div class="hoverable res">
+                            <p>Gather information, Conduct interviews, surveys, and observations, and Analyze
+                                competitors and market trends.</p>
+                        </div>
+
+                        <li id="def">Define</li>
+                        <div class="hoverable def">
+                            <p>Articulate the problem, Create detailed profiles, and Define the functional and
+                                non-functional requirements of the project.</p>
+                        </div>
+
+                        <li id="conc">Conceptualize</li>
+                        <div class="hoverable conc">
+                            <p>Generate, create, and refine ideas</p>
+                        </div>
+
+                        <li id="proto">Prototyping</li>
+                        <div class="hoverable proto">
+                            <p>Develop simple prototypes for basic tests then create interactive prototypes.</p>
+                        </div>
+
+                        <li id="test">Testing</li>
+                        <div class="hoverable test">
+                            <p>Conduct tests on real users and refine the design based on the result.</p>
+                        </div>
+
+                        <li id="imp">Implementation</li>
+                        <div class="hoverable imp">
+                            <p>Work with developers to build the final product and release the product to users</p>
+                        </div>
+
+                        <li id="eval">Evaluation and Maintenance</li>
+                        <div class="hoverable eval">
+                            <p>Monitor the product’s performance and user feedback and make necessary changes if future
+                                features*bugs* are discovered</p>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="types" class="types">
+            <div class="main_text">
+                <h1>Types</h1>
+            </div>
+
+            <div class="type_content">
+                <h1>Relational Databases</h1>
+                <p>These use tables to store data and are managed using SQL (Structured Query Language).</p>
+                <h1>NoSQL Databases</h1>
+                <p>These are designed for unstructured data and can handle large volumes of diverse data types.</p>
+                <h1>Object-oriented Databases</h1>
+                <p>Store data in objects, similar to object-oriented programming (e.g., db4o).</p>
+                <h1>Hierarchical Databases</h1>
+                <p>Organize data in a tree-like structure, with parent-child relationships (e.g., IBM’s Information
+                    Management System).</p>
+                <h1>Network Databases</h1>
+                <p>Similar to hierarchical databases but allow multiple parent records (e.g., Integrated Data Store).
+                </p>
+                <h1>Cloud Databases</h1>
+                <p>Hosted on cloud platforms, offering scalability and flexibility (e.g., Amazon RDS, Google Cloud SQL).
+                </p>
+                <h1>Centralized Databases</h1>
+                <p>All data is stored in a single location, typically managed by a central server.</p>
+                <h1>Distributed Databases</h1>
+                <p>Data is distributed across different locations, improving reliability and performance (e.g., Apache
+                    HBase).</p>
+                <h1>Operational Databases</h1>
+                <p>Designed for real-time operations and transactions (e.g., Microsoft SQL Server).</p>
+            </div>
+        </section>
+
+        <section id="process" class="process">
+            <div class="main_text">
+                <h1>Process</h1>
+            </div>
+
+            <div class="process_contents">
+                <div class="first_p">
+                    <h1>Determining the purpose of your database</h1>
+                    <p>It is a good idea to write down the purpose of the database on paper — its purpose, how you
+                        expect to use it, and who
+                        will use it. The idea is to have a well developed mission statement that can be referred to
+                        throughout the design process. Having
+                        such a statement helps you focus on your goals when you make decisions.</p>
+                </div>
+
+                <div class="second_p">
+                    <h1>Finding and organizing the required information</h1>
+                    <p>To find and organize the information required, start with your existing information. Gather those
+                        documents and list each type of information shown. Next, consider the types of reports or
+                        mailings you might want to produce from the database. For instance, you might
+                        want a product sales report to show sales by region, or an inventory summary report that shows
+                        product inventory levels.</p>
+                </div>
+
+                <div class="third_p">
+                    <h1>Dividing the information into tables</h1>
+                    <p>To divide the information into tables, choose the major entities, or subjects. Once you have
+                        chosen the subject that is represented by a table, columns in that table should store facts only
+                        about the
+                        subject.</p>
+                </div>
+
+                <div class="fourth_p">
+                    <h1>Turning information items into columns</h1>
+                    <p>To determine the columns in a table, decide what information you need to track about the subject
+                        recorded in the table. Each record in the table contains the same set of columns, so you can
+                        store necessary information for each record.</p>
+                </div>
+
+                <div class="fifth_p">
+                    <h1>Specifying primary keys</h1>
+                    <p>Each table should include a column or set of columns that uniquely identifies each row stored in
+                        the table. This is
+                        often a unique identification number, such as an employee ID number or a serial number. In
+                        database terminology, this
+                        information is called the primary key of the table. Access uses primary key fields to quickly
+                        associate data from
+                        multiple tables and bring the data together for you.</p>
+                </div>
+
+                <div class="sixth_p">
+                    <h1>Creating the table relationships</h1>
+                    <p>Now that you have divided your information into tables, you need a way to bring the information
+                        together in
+                        meaningful ways.</p>
+                </div>
+
+                <div class="seventh_p">
+                    <h1>Refining the design</h1>
+                    <p>Once you have the tables, fields, and relationships you need, you should create and populate your
+                        tables with sample
+                        data and try working with the information: creating queries, adding new records, and so on.
+                        Doing this helps highlight
+                        potential problems — for example, you might need to add a column that you forgot to insert
+                        during your design phase, or
+                        you may have a table that you should split into two tables to remove duplication.</p>
+                </div>
+
+                <div class="eight_p">
+                    <h1>Applying the normalization rules</h1>
+                    <p>You can apply the data normalization rules (sometimes just called normalization rules) as the
+                        next step in your design.
+                        You use these rules to see if your tables are structured correctly. The process of applying the
+                        rules to your database
+                        design is called normalizing the database, or just normalization.
+
+                        Normalization is most useful after you have represented all of the information items and have
+                        arrived at a preliminary
+                        design. The idea is to help you ensure that you have divided your information items into the
+                        appropriate tables.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="actual_demo" class="actual_demo">
+            <h1>An actual Demo of designing a Database</h1>
+        </section>
+    </main>
+
+    <footer>
+        <div class="credits">
+            <h2>All Links Here</h2>
+            <p>
+                <a
+                    href="https://www.freepik.com/free-vector/future-city-night-landscape-neon-cartoon_4758725.htm#query=futuristic%20neon%20city&position=3&from_view=keyword&track=ais_hybrid&uuid=66271649-8c05-4a53-8d86-f833c5925c4d">Image
+                    by vectorpocket</a>
+            </p>
+
+            <p>
+                <a href="https://www.geeksforgeeks.org/complete-reference-to-databases-in-designing-systems/">
+                    Complete Reference to Databases in Designing Systems – Learn System Design
+                </a>
+            </p>
+
+            <p>
+                <a
+                    href="https://support.microsoft.com/en-us/office/database-design-basics-eb2159cf-1e30-401a-8084-bd4f9c9ca1f5">Database
+                    design basics</a>
+            </p>
+        </div>
+
+        <div class="last">
+            <p>Made by accident with HTML, CSS, and JavaScript | Erick Gaceta</p>
+        </div>
+
+        <div class="icons">
+            <a href="https://www.facebook.com/erick.gaceta.3"><svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path fill="#316FF6"
+                        d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z" />
+                </svg></a>
+
+            <a href="https://www.youtube.com/@nixe147"><svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path fill="#FF0000"
+                        d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z" />
+                </svg></a>
+
+        </div>
+
+    </footer>
+</body>
+
+<script src="./functionality.js"></script>
+
+</html>
